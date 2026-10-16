@@ -51,6 +51,11 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
+  --color-bronze: var(--bronze);
+  --color-navy: var(--navy);
+  --color-field: var(--field);
+  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar-primary: var(--sidebar-primary);
@@ -63,13 +68,13 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
+  --background: oklch(0.14 0.012 255);
   --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
+  --card: oklch(0.99 0.002 260);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
+  --primary: oklch(0.69 0.07 60);
   --primary-foreground: oklch(0.984 0.003 247.858);
   --secondary: oklch(0.968 0.007 247.896);
   --secondary-foreground: oklch(0.208 0.042 265.755);
@@ -81,12 +86,20 @@
   --destructive-foreground: oklch(0.984 0.003 247.858);
   --border: oklch(0.929 0.013 255.508);
   --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --ring: oklch(0.69 0.07 60);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
+  --page: oklch(0.14 0.012 255);
+  --navy: oklch(0.17 0.03 250);
+  --bronze: oklch(0.69 0.07 60);
+  --bronze-deep: oklch(0.58 0.07 55);
+  --field: oklch(0.97 0.004 260);
+  --gradient-panel: linear-gradient(135deg, #050d16 0%, #0b182c 100%);
+  --gradient-bronze: linear-gradient(135deg, oklch(0.76 0.07 65), var(--bronze) 50%, var(--bronze-deep));
+  --shadow-bronze: 0 14px 30px -12px color-mix(in oklab, var(--bronze) 65%, transparent);
   --sidebar: oklch(0.984 0.003 247.858);
   --sidebar-foreground: oklch(0.129 0.042 264.695);
   --sidebar-primary: oklch(0.208 0.042 265.755);
@@ -142,3 +155,14 @@
     color: var(--color-foreground);
   }
 }
+
+@utility bg-panel { background: var(--gradient-panel); }
+@utility bg-bronze-gradient { background: var(--gradient-bronze); }
+@utility shadow-bronze { box-shadow: var(--shadow-bronze); }
+@utility panel-glow {
+  background-image: radial-gradient(60% 50% at 85% 10%, color-mix(in oklab, var(--bronze) 18%, transparent), transparent 70%),
+    radial-gradient(50% 40% at 0% 100%, oklch(0.4 0.08 250 / 0.35), transparent 70%);
+}
+@utility fade-up { animation: fade-up 0.5s ease-out both; }
+@keyframes fade-up { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
