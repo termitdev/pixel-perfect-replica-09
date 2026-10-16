@@ -1,8 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LeadForm } from "@/components/LeadForm";
 
-const TITLE = "Dê o próximo passo — Fale com a gente";
-const DESC = "Preencha seus dados para receber mais informações e descobrir como podemos ajudar você.";
+const TITLE = "Vamos conversar? — INA + Literare Books";
+const DESC = "Preencha seus dados para receber nosso contato.";
+
+// Replace with the institutional art (inacard.png) once uploaded.
+const HERO_SRC: string | null = null;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -20,45 +23,26 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const steps = [
-  { n: "01", t: "Informe seus dados" },
-  { n: "02", t: "Receba nosso contato" },
-  { n: "03", t: "Descubra as possibilidades" },
-];
-
 function Index() {
   return (
     <main className="flex min-h-screen items-center justify-center px-3 py-3 sm:px-6 sm:py-10">
-      <div className="grid w-full max-w-[1200px] gap-3 overflow-hidden rounded-[28px] bg-card p-2 sm:p-3 lg:min-h-[680px] lg:grid-cols-[58fr_42fr]">
-        <section className="relative flex flex-col justify-between overflow-hidden rounded-[22px] bg-panel p-7 sm:p-10 lg:p-14">
-          <div className="pointer-events-none absolute inset-0 panel-glow" aria-hidden />
-          <div className="relative fade-up">
-            <span className="inline-flex items-center gap-2 rounded-full border border-bronze/30 bg-bronze/10 px-3.5 py-1.5 text-[11px] font-semibold tracking-[0.2em] text-bronze">
-              <span className="h-1.5 w-1.5 rounded-full bg-bronze" aria-hidden />
-              VAMOS COMEÇAR
-            </span>
-            <h1 className="mt-6 font-display text-4xl font-semibold leading-[1.05] tracking-tight text-primary-foreground sm:text-5xl lg:text-6xl">
-              Dê o próximo <span className="text-bronze">passo.</span>
-            </h1>
-            <p className="mt-5 max-w-md text-base leading-relaxed text-primary-foreground/70 sm:text-lg">{DESC}</p>
-          </div>
+      <div className="grid w-full max-w-[1200px] overflow-hidden rounded-[28px] bg-card md:grid-cols-[58fr_42fr] md:min-h-[min(700px,calc(100vh-5rem))]">
+        <div className="relative h-[300px] overflow-hidden bg-panel sm:h-[400px] md:h-auto">
+          {HERO_SRC && (
+            <img
+              src={HERO_SRC}
+              alt="INA e Literare Books"
+              className="absolute inset-0 h-full w-full object-cover object-[center_20%]"
+            />
+          )}
+        </div>
 
-          <ol className="relative mt-10 grid gap-3 sm:grid-cols-3 lg:mt-0">
-            {steps.map((s) => (
-              <li key={s.n} className="rounded-2xl border border-primary-foreground/10 bg-primary-foreground/[0.04] p-4 backdrop-blur-sm sm:p-5">
-                <span className="font-display text-sm font-semibold text-bronze">{s.n}</span>
-                <p className="mt-2 text-sm font-medium leading-snug text-primary-foreground/90">{s.t}</p>
-              </li>
-            ))}
-          </ol>
-        </section>
-
-        <section className="flex items-center justify-center rounded-[22px] px-5 py-10 sm:px-10 lg:px-12" aria-labelledby="form-title">
+        <section className="flex items-center justify-center px-6 py-10 sm:px-10 lg:px-14" aria-labelledby="form-title">
           <div className="w-full max-w-sm fade-up">
             <h2 id="form-title" className="font-display text-3xl font-semibold tracking-tight text-navy">
               Vamos conversar?
             </h2>
-            <p className="mb-8 mt-2 text-muted-foreground">Preencha o formulário e entraremos em contato.</p>
+            <p className="mb-8 mt-2 text-muted-foreground">{DESC}</p>
             <LeadForm />
           </div>
         </section>
